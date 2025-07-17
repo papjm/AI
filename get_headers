@@ -1,0 +1,11 @@
+curl -s -D - https://shippingsupplies.whatnot.com/ -o /dev/null | awk -F: '
+BEGIN { IGNORECASE=1 }
+/^HTTP/{next}
+/^$/ { next }
+/Access-Control-Allow-Headers/ || /Access-Control-Expose-Headers/ {
+    split($2, vals, ",")
+    for (i in vals) print $1
+    next
+}
+{ print $1 }
+' | sed 's/^[ \t]*//;s/[ \t]*$//' | sort -u
