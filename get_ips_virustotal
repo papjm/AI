@@ -1,0 +1,1 @@
+curl -s "https://www.virustotal.com/vtapi/v2/domain/report?apikey=da1bd6eb81b48fcc67968f96db66edfee82ca7782d50954ae65f01f1ef3b683d&domain=assets.specialized.com" | jq -r '.resolutions[].ip_address'
